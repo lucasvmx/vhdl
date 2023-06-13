@@ -4,14 +4,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity decodificador_bcd is
     Port ( sw : in STD_LOGIC_VECTOR (3 downto 0);
            seg : out STD_LOGIC_VECTOR (6 downto 0);
-           an: out STD_LOGIC_VECTOR (3 downto 0));
+           an: out STD_LOGIC_VECTOR (3 downto 0);
+           chave_multiplexador: in STD_LOGIC);
 end decodificador_bcd;
 
 architecture Behavioral of decodificador_bcd is
 
 begin
     
-    an <= "0000";
+    an <= 
+        "1110" when chave_multiplexador = '1' else
+        "1101" when chave_multiplexador = '0';
     
     seg <=
         "1000000" when sw = "0000" else

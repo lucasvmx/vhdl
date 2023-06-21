@@ -30,11 +30,13 @@ begin
             if cycles_05hz = 200000000 then
                 cycles_05hz <= 1;
 
-                if counter = 2 then
+                if counter = 1 then
                     an <= "1111";
                     shutdown_display <= '1';
                     counter := counter + 1;
-                elsif counter = 3 then
+                    show_experiment_number <= '1';
+                    show_register <= '0';
+                elsif counter = 2 then
                     counter := 0;
                     shutdown_display <= '0';
                 else
@@ -49,17 +51,17 @@ begin
                 counter_50hz <= 1;
 
                 if show_experiment_number = '1' and change_display = 1 then
-                    an <= "1110"; seg <= "1000000";
+                    an <= "1101"; seg <= "1000000";
                     change_display <= 2;
                 elsif show_experiment_number = '1' and change_display = 2 then
-                    an <= "1101"; seg <= "0010000";
+                    an <= "1110"; seg <= "0010000";
                     change_display <= 1;
                 elsif show_register = '1' then
                     case change_display_4d is
-                        when 1 => an <= "1110"; seg <= "1111001";
-                        when 2 => an <= "1101"; seg <= "1111001";
-                        when 3 => an <= "1011"; seg <= "0110000";
-                        when 4 => an <= "0111"; seg <= "0000010";
+                        when 1 => an <= "0111"; seg <= "1111001";
+                        when 2 => an <= "1011"; seg <= "1111001";
+                        when 3 => an <= "1101"; seg <= "0110000";
+                        when 4 => an <= "1110"; seg <= "0000010";
                         when others => an <= "1111";
                     end case;
 

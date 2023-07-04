@@ -1,0 +1,123 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Shift_Register is
+    Port (
+        clk : in STD_LOGIC;         -- Sinal de clock
+        reset : in STD_LOGIC;       -- Sinal de reset
+        shift_in : in STD_LOGIC;    -- Dado de entrada serial
+        shift_en : in STD_LOGIC;    -- Habilita o deslocamento
+        parallel_in : in STD_LOGIC_VECTOR(14 downto 0);  -- Dados de entrada paralela
+        parallel_en : in STD_LOGIC; -- Habilita a carga em paralelo
+        serial_out : out STD_LOGIC; -- Dado de saída serial
+        parallel_out : out STD_LOGIC_VECTOR(14 downto 0)  -- Dado de saída paralela
+    );
+end Shift_Register;
+
+architecture Behavioral of Shift_Register is
+    signal register_data : STD_LOGIC_VECTOR(15 downto 0);
+
+begin
+    -- Processo para controle do registrador de deslocamento
+    process(clk, reset)
+    begin
+        if (reset = '1') then   -- Reseta o registrador quando o sinal de reset é '1'
+            register_data <= (others => '0');
+        elsif (rising_edge(clk)) then  -- Detecta a borda de subida do sinal de clock
+            if (parallel_en = '1') then  -- Habilita a carga em paralelo
+                register_data <= parallel_in;
+            elsif (shift_en = '1') then  -- Habilita o deslocamento
+                register_data <= shift_in & register_data(15 downto 1);
+            end if;
+        end if;
+    end process;
+
+    -- Saída serial do registrador (bit mais significativo)
+    serial_out <= register_data(15);
+
+    -- Saída paralela do registrador
+    parallel_out <= register_data(14 downto 0);
+
+end Behavioral;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Shift_Register is
+    Port (
+        clk : in STD_LOGIC;         -- Sinal de clock
+        reset : in STD_LOGIC;       -- Sinal de reset
+        shift_in : in STD_LOGIC;    -- Dado de entrada serial
+        shift_en : in STD_LOGIC;    -- Habilita o deslocamento
+        parallel_in : in STD_LOGIC_VECTOR(14 downto 0);  -- Dados de entrada paralela
+        parallel_en : in STD_LOGIC; -- Habilita a carga em paralelo
+        serial_out : out STD_LOGIC; -- Dado de saída serial
+        parallel_out : out STD_LOGIC_VECTOR(14 downto 0)  -- Dado de saída paralela
+    );
+end Shift_Register;
+
+architecture Behavioral of Shift_Register is
+    signal register_data : STD_LOGIC_VECTOR(15 downto 0);
+
+begin
+    -- Processo para controle do registrador de deslocamento
+    process(clk, reset)
+    begin
+        if (reset = '1') then   -- Reseta o registrador quando o sinal de reset é '1'
+            register_data <= (others => '0');
+        elsif (rising_edge(clk)) then  -- Detecta a borda de subida do sinal de clock
+            if (parallel_en = '1') then  -- Habilita a carga em paralelo
+                register_data <= parallel_in;
+            elsif (shift_en = '1') then  -- Habilita o deslocamento
+                register_data <= shift_in & register_data(15 downto 1);
+            end if;
+        end if;
+    end process;
+
+    -- Saída serial do registrador (bit mais significativo)
+    serial_out <= register_data(15);
+
+    -- Saída paralela do registrador
+    parallel_out <= register_data(14 downto 0);
+
+end Behavioral;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Shift_Register is
+    Port (
+        clk : in STD_LOGIC;         -- Sinal de clock
+        reset : in STD_LOGIC;       -- Sinal de reset
+        shift_in : in STD_LOGIC;    -- Dado de entrada serial
+        shift_en : in STD_LOGIC;    -- Habilita o deslocamento
+        parallel_in : in STD_LOGIC_VECTOR(14 downto 0);  -- Dados de entrada paralela
+        parallel_en : in STD_LOGIC; -- Habilita a carga em paralelo
+        serial_out : out STD_LOGIC; -- Dado de saída serial
+        parallel_out : out STD_LOGIC_VECTOR(14 downto 0)  -- Dado de saída paralela
+    );
+end Shift_Register;
+
+architecture Behavioral of Shift_Register is
+    signal register_data : STD_LOGIC_VECTOR(15 downto 0);
+
+begin
+    -- Processo para controle do registrador de deslocamento
+    process(clk, reset)
+    begin
+        if (reset = '1') then   -- Reseta o registrador quando o sinal de reset é '1'
+            register_data <= (others => '0');
+        elsif (rising_edge(clk)) then  -- Detecta a borda de subida do sinal de clock
+            if (parallel_en = '1') then  -- Habilita a carga em paralelo
+                register_data <= parallel_in;
+            elsif (shift_en = '1') then  -- Habilita o deslocamento
+                register_data <= shift_in & register_data(15 downto 1);
+            end if;
+        end if;
+    end process;
+
+    -- Saída serial do registrador (bit mais significativo)
+    serial_out <= register_data(15);
+
+    -- Saída paralela do registrador
+    parallel_out <= register_data(14 downto 0);
+
+end Behavioral;
